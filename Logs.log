@@ -1,0 +1,7 @@
+{"level":"info","message":"Sat Mar 30 2024 15:14:08 GMT+0530 (India Standard Time)\n req URL: /api-docs\n reqBody: {}","service":"user-service"}
+{"level":"info","message":"Sat Mar 30 2024 15:14:09 GMT+0530 (India Standard Time)\n req URL: /api-docs/\n reqBody: {}","service":"user-service"}
+{"level":"info","message":"Sat Mar 30 2024 15:14:09 GMT+0530 (India Standard Time)\n req URL: /api-docs/swagger-ui.css\n reqBody: {}","service":"user-service"}
+{"level":"info","message":"Sat Mar 30 2024 15:14:09 GMT+0530 (India Standard Time)\n req URL: /api-docs/swagger-ui-bundle.js\n reqBody: {}","service":"user-service"}
+{"level":"info","message":"Sat Mar 30 2024 15:14:09 GMT+0530 (India Standard Time)\n req URL: /api-docs/swagger-ui-standalone-preset.js\n reqBody: {}","service":"user-service"}
+{"level":"info","message":"Sat Mar 30 2024 15:14:09 GMT+0530 (India Standard Time)\n req URL: /api-docs/swagger-ui-init.js\n reqBody: {}","service":"user-service"}
+{"level":"info","message":"Sat Mar 30 2024 15:14:09 GMT+0530 (India Standard Time)\n req URL: /api-docs/favicon-16x16.png\n reqBody: {}","service":"user-service"}

@@ -1,0 +1,402 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "description": "API for Social Media application",
+      "title": "postaway API"
+    },
+    "host": "localhost:5000",
+    "securityDefinitions": {
+      "JWT": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    },
+    "paths": {
+      "/api/signup": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Register a new user",
+          "description": "Endpoint to register a new user",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User registration details",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "User registered successfully"
+            },
+            "400": {
+              "description": "Invalid user details"
+            }
+          }
+        }
+      },
+      "/api/signin": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Login",
+          "description": "Endpoint for user login",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User login credentials",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User logged in successfully"
+            },
+            "400": {
+              "description": "Incorrect credentials"
+            }
+          }
+        }
+      },
+      "/api/posts": {
+        "get": {
+          "tags": ["Posts"],
+          "summary": "Retrieve all posts",
+          "description": "Endpoint to retrieve all posts",
+          "security": [{ "JWT": {} }],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          }
+        },
+        "post": {
+          "tags": ["Posts"],
+          "summary": "Create a new post",
+          "description": "Endpoint to create a new post",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Post details",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer"
+                  },
+                  "caption": {
+                    "type": "string"
+                  },
+                  "imageUrl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Post created successfully"
+            },
+            "400": {
+              "description": "Invalid post details"
+            }
+          }
+        }
+      },
+      "/api/posts/{id}": {
+        "get": {
+          "tags": ["Posts"],
+          "summary": "Retrieve a specific post by ID",
+          "description": "Endpoint to retrieve a specific post by its ID",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Post ID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          }
+        },
+        "delete": {
+          "tags": ["Posts"],
+          "summary": "Delete a specific post by ID",
+          "description": "Endpoint to delete a specific post by its ID",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Post ID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post deleted successfully"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          }
+        },
+        "put": {
+          "tags": ["Posts"],
+          "summary": "Update a specific post by ID",
+          "description": "Endpoint to update a specific post by its ID",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Post ID",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Updated post details",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "caption": {
+                    "type": "string"
+                  },
+                  "imageUrl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post updated successfully"
+            },
+            "400": {
+              "description": "Invalid post details"
+            }
+          }
+        }
+      },
+      "/api/comments/{id}": {
+        "get": {
+          "tags": ["Comments"],
+          "summary": "Retrieve all comments for a specific post",
+          "description": "Endpoint to retrieve all comments for a specific post",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Post ID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          }
+        },
+        "post": {
+          "tags": ["Comments"],
+          "summary": "Add a new comment to a specific post",
+          "description": "Endpoint to add a new comment to a specific post",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Post ID",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Comment details",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer"
+                  },
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Comment added successfully"
+            },
+            "400": {
+              "description": "Invalid comment details"
+            }
+          }
+        },
+        "delete": {
+          "tags": ["Comments"],
+          "summary": "Delete a specific comment by ID",
+          "description": "Endpoint to delete a specific comment by its ID",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Comment ID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Comment deleted successfully"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          }
+        },
+        "put": {
+            "tags": ["Comments"],
+            "summary": "Update a specific comment by ID",
+            "description": "Endpoint to update a specific comment by its ID",
+            "security": [{ "JWT": {} }],
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "description": "Comment ID",
+                "required": true,
+                "type": "integer"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "description": "Updated comment details",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Comment updated successfully"
+              },
+              "400": {
+                "description": "Invalid comment details"
+              }
+            }
+          }
+    },
+    "/api/likes/{postid}": {
+        "get": {
+          "tags": ["Likes"],
+          "summary": "Retrieve all likes for a specific post",
+          "description": "Endpoint to retrieve all likes for a specific post",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "postid",
+              "description": "Post ID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+                "description": "Invalid post details"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          }
+        }
+      },
+      "/api/likes/toggle/{postid}": {
+        "get": {
+          "tags": ["Likes"],
+          "summary": "Toggle like status for a specific post",
+          "description": "Endpoint to toggle like status for a specific post",
+          "security": [{ "JWT": {} }],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "postid",
+              "description": "Post ID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          }
+        }
+      }
+  }
+}
+  
