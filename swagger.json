@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
       "version": "1.0.0",
-      "description": "API for Social Media application",
+      "description": "API for Social Media application\nCreated by Meet Virani",
       "title": "postaway API"
     },
     "host": "localhost:5000",
